@@ -2,15 +2,8 @@ namespace CSharpProject
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,12 +15,11 @@ namespace CSharpProject
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.foodListBox = new System.Windows.Forms.ListBox();
@@ -40,18 +32,63 @@ namespace CSharpProject
             this.totalFatLabel = new System.Windows.Forms.Label();
             this.totalIronLabel = new System.Windows.Forms.Label();
             this.totalVitaminCLabel = new System.Windows.Forms.Label();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
+            //
+            // tabControl1
+            //
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(618, 450);
+            this.tabControl1.TabIndex = 0;
+            //
+            // tabPage1
+            //
+            this.tabPage1.Controls.Add(this.searchTextBox);
+            this.tabPage1.Controls.Add(this.searchButton);
+            this.tabPage1.Controls.Add(this.foodListBox);
+            this.tabPage1.Controls.Add(this.addButton);
+            this.tabPage1.Controls.Add(this.dailyLogListBox);
+            this.tabPage1.Controls.Add(this.removeButton);
+            this.tabPage1.Controls.Add(this.totalCaloriesLabel);
+            this.tabPage1.Controls.Add(this.totalProteinLabel);
+            this.tabPage1.Controls.Add(this.totalCarbsLabel);
+            this.tabPage1.Controls.Add(this.totalFatLabel);
+            this.tabPage1.Controls.Add(this.totalIronLabel);
+            this.tabPage1.Controls.Add(this.totalVitaminCLabel);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(610, 422);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Nutrition Diary";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            //
+            // tabPage2
+            //
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(610, 422);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Page 2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             //
             // searchTextBox
             //
-            this.searchTextBox.Location = new System.Drawing.Point(12, 12);
+            this.searchTextBox.Location = new System.Drawing.Point(8, 6);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(200, 23);
             this.searchTextBox.TabIndex = 0;
             //
             // searchButton
             //
-            this.searchButton.Location = new System.Drawing.Point(218, 12);
+            this.searchButton.Location = new System.Drawing.Point(214, 6);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(75, 23);
             this.searchButton.TabIndex = 1;
@@ -62,14 +99,14 @@ namespace CSharpProject
             //
             this.foodListBox.FormattingEnabled = true;
             this.foodListBox.ItemHeight = 15;
-            this.foodListBox.Location = new System.Drawing.Point(12, 41);
+            this.foodListBox.Location = new System.Drawing.Point(8, 35);
             this.foodListBox.Name = "foodListBox";
             this.foodListBox.Size = new System.Drawing.Size(281, 199);
             this.foodListBox.TabIndex = 2;
             //
             // addButton
             //
-            this.addButton.Location = new System.Drawing.Point(12, 246);
+            this.addButton.Location = new System.Drawing.Point(8, 240);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(281, 23);
             this.addButton.TabIndex = 3;
@@ -80,14 +117,14 @@ namespace CSharpProject
             //
             this.dailyLogListBox.FormattingEnabled = true;
             this.dailyLogListBox.ItemHeight = 15;
-            this.dailyLogListBox.Location = new System.Drawing.Point(318, 41);
+            this.dailyLogListBox.Location = new System.Drawing.Point(314, 35);
             this.dailyLogListBox.Name = "dailyLogListBox";
             this.dailyLogListBox.Size = new System.Drawing.Size(281, 199);
             this.dailyLogListBox.TabIndex = 4;
             //
             // removeButton
             //
-            this.removeButton.Location = new System.Drawing.Point(318, 246);
+            this.removeButton.Location = new System.Drawing.Point(314, 240);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(281, 23);
             this.removeButton.TabIndex = 5;
@@ -97,7 +134,7 @@ namespace CSharpProject
             // totalCaloriesLabel
             //
             this.totalCaloriesLabel.AutoSize = true;
-            this.totalCaloriesLabel.Location = new System.Drawing.Point(318, 283);
+            this.totalCaloriesLabel.Location = new System.Drawing.Point(314, 277);
             this.totalCaloriesLabel.Name = "totalCaloriesLabel";
             this.totalCaloriesLabel.Size = new System.Drawing.Size(82, 15);
             this.totalCaloriesLabel.TabIndex = 6;
@@ -106,7 +143,7 @@ namespace CSharpProject
             // totalProteinLabel
             //
             this.totalProteinLabel.AutoSize = true;
-            this.totalProteinLabel.Location = new System.Drawing.Point(318, 307);
+            this.totalProteinLabel.Location = new System.Drawing.Point(314, 301);
             this.totalProteinLabel.Name = "totalProteinLabel";
             this.totalProteinLabel.Size = new System.Drawing.Size(79, 15);
             this.totalProteinLabel.TabIndex = 7;
@@ -115,7 +152,7 @@ namespace CSharpProject
             // totalCarbsLabel
             //
             this.totalCarbsLabel.AutoSize = true;
-            this.totalCarbsLabel.Location = new System.Drawing.Point(318, 331);
+            this.totalCarbsLabel.Location = new System.Drawing.Point(314, 325);
             this.totalCarbsLabel.Name = "totalCarbsLabel";
             this.totalCarbsLabel.Size = new System.Drawing.Size(70, 15);
             this.totalCarbsLabel.TabIndex = 8;
@@ -124,7 +161,7 @@ namespace CSharpProject
             // totalFatLabel
             //
             this.totalFatLabel.AutoSize = true;
-            this.totalFatLabel.Location = new System.Drawing.Point(318, 355);
+            this.totalFatLabel.Location = new System.Drawing.Point(314, 349);
             this.totalFatLabel.Name = "totalFatLabel";
             this.totalFatLabel.Size = new System.Drawing.Size(55, 15);
             this.totalFatLabel.TabIndex = 9;
@@ -133,7 +170,7 @@ namespace CSharpProject
             // totalIronLabel
             //
             this.totalIronLabel.AutoSize = true;
-            this.totalIronLabel.Location = new System.Drawing.Point(318, 379);
+            this.totalIronLabel.Location = new System.Drawing.Point(314, 373);
             this.totalIronLabel.Name = "totalIronLabel";
             this.totalIronLabel.Size = new System.Drawing.Size(59, 15);
             this.totalIronLabel.TabIndex = 10;
@@ -142,7 +179,7 @@ namespace CSharpProject
             // totalVitaminCLabel
             //
             this.totalVitaminCLabel.AutoSize = true;
-            this.totalVitaminCLabel.Location = new System.Drawing.Point(318, 403);
+            this.totalVitaminCLabel.Location = new System.Drawing.Point(314, 397);
             this.totalVitaminCLabel.Name = "totalVitaminCLabel";
             this.totalVitaminCLabel.Size = new System.Drawing.Size(91, 15);
             this.totalVitaminCLabel.TabIndex = 11;
@@ -153,26 +190,20 @@ namespace CSharpProject
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(618, 450);
-            this.Controls.Add(this.totalVitaminCLabel);
-            this.Controls.Add(this.totalIronLabel);
-            this.Controls.Add(this.totalFatLabel);
-            this.Controls.Add(this.totalCarbsLabel);
-            this.Controls.Add(this.totalProteinLabel);
-            this.Controls.Add(this.totalCaloriesLabel);
-            this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.dailyLogListBox);
-            this.Controls.Add(this.addButton);
-            this.Controls.Add(this.foodListBox);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.searchTextBox);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Nutrition Diary";
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
 
         #endregion
 
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.ListBox foodListBox;

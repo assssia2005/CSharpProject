@@ -17,8 +17,7 @@ public class Database
             var command = connection.CreateCommand();
             command.CommandText =
             @"
-                DROP TABLE IF EXISTS food;
-                CREATE TABLE food (
+                CREATE TABLE IF NOT EXISTS food (
                     food_name TEXT PRIMARY KEY,
                     category TEXT,
                     calories REAL,
