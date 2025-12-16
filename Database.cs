@@ -28,10 +28,12 @@ public class Database
                     vitamin_c REAL
                 );
 
-                CREATE TABLE IF NOT EXISTS daily_log (
+                DROP TABLE IF EXISTS daily_log;
+                CREATE TABLE daily_log (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     log_date TEXT NOT NULL,
                     food_name TEXT NOT NULL,
+                    weight REAL NOT NULL,
                     FOREIGN KEY (food_name) REFERENCES food(food_name)
                 );
             ";
@@ -145,52 +147,44 @@ public class Database
         }
     }
 
-    public static void AddFoodToLog(Food food, DateTime date)
+    public static void AddFoodToLog(Food food, DateTime date, double weight)
     {
         using (var connection = new SqliteConnection(ConnectionString))
         {
             connection.Open();
 
             var command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO daily_log (log_date, food_name) VALUES ($log_date, $food_name)";
+            command.CommandText = "INSERT INTO daily_log (log_date, food_name, weight) VALUES ($log_date, $food_name, $weight)";
             command.Parameters.AddWithValue("$log_date", date.ToString("yyyy-MM-dd"));
             command.Parameters.AddWithValue("$food_name", food.FoodName);
+            command.Parameters.AddWithValue("$weight", weight);
             command.ExecuteNonQuery();
         }
     }
 
-    public static void RemoveFoodFromLog(Food food, DateTime date)
+    public static void RemoveFoodFromLog(int logId)
     {
         using (var connection = new SqliteConnection(ConnectionString))
         {
             connection.Open();
 
             var command = connection.CreateCommand();
-            // This will remove only one instance if there are duplicates
-            command.CommandText = @"
-                DELETE FROM daily_log
-                WHERE id = (
-                    SELECT id
-                    FROM daily_log
-                    WHERE log_date = $log_date AND food_name = $food_name
-                    LIMIT 1
-                )";
-            command.Parameters.AddWithValue("$log_date", date.ToString("yyyy-MM-dd"));
-            command.Parameters.AddWithValue("$food_name", food.FoodName);
+            command.CommandText = "DELETE FROM daily_log WHERE id = $id";
+            command.Parameters.AddWithValue("$id", logId);
             command.ExecuteNonQuery();
         }
     }
 
-    public static List<Food> GetLogForDate(DateTime date)
+    public static List<LoggedFood> GetLogForDate(DateTime date)
     {
-        var foods = new List<Food>();
+        var foods = new List<LoggedFood>();
         using (var connection = new SqliteConnection(ConnectionString))
         {
             connection.Open();
 
             var command = connection.CreateCommand();
             command.CommandText = @"
-                SELECT f.food_name, f.category, f.calories, f.protein, f.carbs, f.fat, f.iron, f.vitamin_c
+                SELECT dl.id, f.food_name, f.category, f.calories, f.protein, f.carbs, f.fat, f.iron, f.vitamin_c, dl.weight
                 FROM daily_log dl
                 JOIN food f ON dl.food_name = f.food_name
                 WHERE dl.log_date = $log_date
@@ -201,16 +195,18 @@ public class Database
             {
                 while (reader.Read())
                 {
-                    var food = new Food
+                    var food = new LoggedFood
                     {
-                        FoodName = reader.GetString(0),
-                        Category = reader.GetString(1),
-                        Calories = reader.IsDBNull(2) ? 0 : reader.GetDouble(2),
-                        Protein = reader.IsDBNull(3) ? 0 : reader.GetDouble(3),
-                        Carbs = reader.IsDBNull(4) ? 0 : reader.GetDouble(4),
-                        Fat = reader.IsDBNull(5) ? 0 : reader.GetDouble(5),
-                        Iron = reader.IsDBNull(6) ? 0 : reader.GetDouble(6),
-                        VitaminC = reader.IsDBNull(7) ? 0 : reader.GetDouble(7)
+                        Id = reader.GetInt32(0),
+                        FoodName = reader.GetString(1),
+                        Category = reader.GetString(2),
+                        Calories = reader.IsDBNull(3) ? 0 : reader.GetDouble(3),
+                        Protein = reader.IsDBNull(4) ? 0 : reader.GetDouble(4),
+                        Carbs = reader.IsDBNull(5) ? 0 : reader.GetDouble(5),
+                        Fat = reader.IsDBNull(6) ? 0 : reader.GetDouble(6),
+                        Iron = reader.IsDBNull(7) ? 0 : reader.GetDouble(7),
+                        VitaminC = reader.IsDBNull(8) ? 0 : reader.GetDouble(8),
+                        Weight = reader.GetDouble(9)
                     };
                     foods.Add(food);
                 }
