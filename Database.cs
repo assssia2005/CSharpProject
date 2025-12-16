@@ -175,6 +175,20 @@ public class Database
         }
     }
 
+    public static void UpdateLogEntryWeight(int logId, double newWeight)
+    {
+        using (var connection = new SqliteConnection(ConnectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "UPDATE daily_log SET weight = $weight WHERE id = $id";
+            command.Parameters.AddWithValue("$weight", newWeight);
+            command.Parameters.AddWithValue("$id", logId);
+            command.ExecuteNonQuery();
+        }
+    }
+
     public static List<LoggedFood> GetLogForDate(DateTime date)
     {
         var foods = new List<LoggedFood>();

@@ -22,7 +22,46 @@ namespace CSharpProject
 
             // Wire up history page event handler and load initial data
             historyDateTimePicker.ValueChanged += HistoryDateTimePicker_ValueChanged;
+            editButton.Click += EditButton_Click;
             LoadHistoryLog(DateTime.Today);
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            var selectedLoggedFood = (LoggedFood)historyListBox.SelectedItem;
+            if (selectedLoggedFood == null) return;
+
+            // Create a prompt form similar to the add functionality
+            Form prompt = new Form()
+            {
+                Width = 250,
+                Height = 150,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Edit Weight",
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            Label textLabel = new Label() { Left = 20, Top = 20, Text = "Weight (g):" };
+            TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 200, Text = selectedLoggedFood.Weight.ToString() };
+            Button confirmationButton = new Button() { Text = "Ok", Left = 120, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+            confirmationButton.Click += (s, ev) => { prompt.Close(); };
+            prompt.Controls.Add(textBox);
+            prompt.Controls.Add(confirmationButton);
+            prompt.Controls.Add(textLabel);
+            prompt.AcceptButton = confirmationButton;
+
+            if (prompt.ShowDialog() == DialogResult.OK)
+            {
+                if (double.TryParse(textBox.Text, out double newWeight) && newWeight > 0)
+                {
+                    Database.UpdateLogEntryWeight(selectedLoggedFood.Id, newWeight);
+                    // Reload the log for the currently selected date in the picker
+                    LoadHistoryLog(historyDateTimePicker.Value);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid weight.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void SearchButton_Click(object sender, EventArgs e)

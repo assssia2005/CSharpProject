@@ -34,6 +34,7 @@ namespace CSharpProject
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.historyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.historyListBox = new System.Windows.Forms.ListBox();
+            this.editButton = new System.Windows.Forms.Button();
             this.historyTotalCaloriesLabel = new System.Windows.Forms.Label();
             this.historyTotalProteinLabel = new System.Windows.Forms.Label();
             this.historyTotalCarbsLabel = new System.Windows.Forms.Label();
@@ -188,6 +189,7 @@ namespace CSharpProject
             //
             this.tabPage2.Controls.Add(this.historyDateTimePicker);
             this.tabPage2.Controls.Add(this.historyListBox);
+            this.tabPage2.Controls.Add(this.editButton);
             this.tabPage2.Controls.Add(this.historyTotalCaloriesLabel);
             this.tabPage2.Controls.Add(this.historyTotalProteinLabel);
             this.tabPage2.Controls.Add(this.historyTotalCarbsLabel);
@@ -217,6 +219,15 @@ namespace CSharpProject
             this.historyListBox.Name = "historyListBox";
             this.historyListBox.Size = new System.Drawing.Size(587, 199);
             this.historyListBox.TabIndex = 1;
+            //
+            // editButton
+            //
+            this.editButton.Location = new System.Drawing.Point(490, 240);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(105, 23);
+            this.editButton.TabIndex = 8;
+            this.editButton.Text = "Edit Selected";
+            this.editButton.UseVisualStyleBackColor = true;
             //
             // historyTotalCaloriesLabel
             //
@@ -313,5 +324,6 @@ namespace CSharpProject
         private System.Windows.Forms.Label historyTotalFatLabel;
         private System.Windows.Forms.Label historyTotalIronLabel;
         private System.Windows.Forms.Label historyTotalVitaminCLabel;
+        private System.Windows.Forms.Button editButton;
     }
 }
