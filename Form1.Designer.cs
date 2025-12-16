@@ -119,6 +119,112 @@ namespace CSharpProject
             this.tabPage2.Text = "Calorie Calculator";
             this.tabPage2.UseVisualStyleBackColor = true;
             //
+            // searchTextBox
+            //
+            this.searchTextBox.Location = new System.Drawing.Point(8, 6);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(200, 23);
+            this.searchTextBox.TabIndex = 0;
+            //
+            // searchButton
+            //
+            this.searchButton.Location = new System.Drawing.Point(214, 6);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 1;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            //
+            // foodListBox
+            //
+            this.foodListBox.FormattingEnabled = true;
+            this.foodListBox.ItemHeight = 15;
+            this.foodListBox.Location = new System.Drawing.Point(8, 35);
+            this.foodListBox.Name = "foodListBox";
+            this.foodListBox.Size = new System.Drawing.Size(281, 199);
+            this.foodListBox.TabIndex = 2;
+            //
+            // addButton
+            //
+            this.addButton.Location = new System.Drawing.Point(8, 240);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(281, 23);
+            this.addButton.TabIndex = 3;
+            this.addButton.Text = "Add to Daily Log";
+            this.addButton.UseVisualStyleBackColor = true;
+            //
+            // dailyLogListBox
+            //
+            this.dailyLogListBox.FormattingEnabled = true;
+            this.dailyLogListBox.ItemHeight = 15;
+            this.dailyLogListBox.Location = new System.Drawing.Point(314, 35);
+            this.dailyLogListBox.Name = "dailyLogListBox";
+            this.dailyLogListBox.Size = new System.Drawing.Size(281, 199);
+            this.dailyLogListBox.TabIndex = 4;
+            //
+            // removeButton
+            //
+            this.removeButton.Location = new System.Drawing.Point(314, 240);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(281, 23);
+            this.removeButton.TabIndex = 5;
+            this.removeButton.Text = "Remove from Daily Log";
+            this.removeButton.UseVisualStyleBackColor = true;
+            //
+            // totalCaloriesLabel
+            //
+            this.totalCaloriesLabel.AutoSize = true;
+            this.totalCaloriesLabel.Location = new System.Drawing.Point(314, 277);
+            this.totalCaloriesLabel.Name = "totalCaloriesLabel";
+            this.totalCaloriesLabel.Size = new System.Drawing.Size(82, 15);
+            this.totalCaloriesLabel.TabIndex = 6;
+            this.totalCaloriesLabel.Text = "Total Calories: 0";
+            //
+            // totalProteinLabel
+            //
+            this.totalProteinLabel.AutoSize = true;
+            this.totalProteinLabel.Location = new System.Drawing.Point(314, 301);
+            this.totalProteinLabel.Name = "totalProteinLabel";
+            this.totalProteinLabel.Size = new System.Drawing.Size(79, 15);
+            this.totalProteinLabel.TabIndex = 7;
+            this.totalProteinLabel.Text = "Total Protein: 0";
+            //
+            // totalCarbsLabel
+            //
+            this.totalCarbsLabel.AutoSize = true;
+            this.totalCarbsLabel.Location = new System.Drawing.Point(314, 325);
+            this.totalCarbsLabel.Name = "totalCarbsLabel";
+            this.totalCarbsLabel.Size = new System.Drawing.Size(70, 15);
+            this.totalCarbsLabel.TabIndex = 8;
+            this.totalCarbsLabel.Text = "Total Carbs: 0";
+            //
+            // totalFatLabel
+            //
+            this.totalFatLabel.AutoSize = true;
+            this.totalFatLabel.Location = new System.Drawing.Point(314, 349);
+            this.totalFatLabel.Name = "totalFatLabel";
+            this.totalFatLabel.Size = new System.Drawing.Size(55, 15);
+            this.totalFatLabel.TabIndex = 9;
+            this.totalFatLabel.Text = "Total Fat: 0";
+            //
+            // totalIronLabel
+            //
+            this.totalIronLabel.AutoSize = true;
+            this.totalIronLabel.Location = new System.Drawing.Point(314, 373);
+            this.totalIronLabel.Name = "totalIronLabel";
+            this.totalIronLabel.Size = new System.Drawing.Size(59, 15);
+            this.totalIronLabel.TabIndex = 10;
+            this.totalIronLabel.Text = "Total Iron: 0";
+            //
+            // totalVitaminCLabel
+            //
+            this.totalVitaminCLabel.AutoSize = true;
+            this.totalVitaminCLabel.Location = new System.Drawing.Point(314, 397);
+            this.totalVitaminCLabel.Name = "totalVitaminCLabel";
+            this.totalVitaminCLabel.Size = new System.Drawing.Size(91, 15);
+            this.totalVitaminCLabel.TabIndex = 11;
+            this.totalVitaminCLabel.Text = "Total Vitamin C: 0";
+            //
             // formulaComboBox
             //
             this.formulaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -216,7 +322,7 @@ namespace CSharpProject
             this.tdeeResultLabel.TabIndex = 9;
             this.tdeeResultLabel.Text = "TDEE: ";
             //
-            // label1/label6 etc.
+            // label1
             //
             this.label1.AutoSize = true; this.label1.Location = new System.Drawing.Point(40, 23); this.label1.Name = "label1"; this.label1.Size = new System.Drawing.Size(54, 15); this.label1.TabIndex = 10; this.label1.Text = "Formula:";
             this.label2.AutoSize = true; this.label2.Location = new System.Drawing.Point(40, 63); this.label2.Name = "label2"; this.label2.Size = new System.Drawing.Size(48, 15); this.label2.TabIndex = 11; this.label2.Text = "Gender:";
@@ -248,11 +354,30 @@ namespace CSharpProject
 
         #endregion
 
-        // Existing controls...
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.ListBox foodListBox;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.ListBox dailyLogListBox;
+        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.Label totalCaloriesLabel;
+        private System.Windows.Forms.Label totalProteinLabel;
+        private System.Windows.Forms.Label totalCarbsLabel;
+        private System.Windows.Forms.Label totalFatLabel;
+        private System.Windows.Forms.Label totalIronLabel;
+        private System.Windows.Forms.Label totalVitaminCLabel;
         private System.Windows.Forms.TabPage tabPage2;
-        // Controls for Calorie Calculator
+        private System.Windows.Forms.DateTimePicker historyDateTimePicker;
+        private System.Windows.Forms.ListBox historyListBox;
+        private System.Windows.Forms.Label historyTotalCaloriesLabel;
+        private System.Windows.Forms.Label historyTotalProteinLabel;
+        private System.Windows.Forms.Label historyTotalCarbsLabel;
+        private System.Windows.Forms.Label historyTotalFatLabel;
+        private System.Windows.Forms.Label historyTotalIronLabel;
+        private System.Windows.Forms.Label historyTotalVitaminCLabel;
+        private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.ComboBox formulaComboBox;
         private System.Windows.Forms.ComboBox genderComboBox;
         private System.Windows.Forms.NumericUpDown ageNumericUpDown;
