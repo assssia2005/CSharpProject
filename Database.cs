@@ -28,8 +28,7 @@ public class Database
                     vitamin_c REAL
                 );
 
-                DROP TABLE IF EXISTS daily_log;
-                CREATE TABLE daily_log (
+                CREATE TABLE IF NOT EXISTS daily_log (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     log_date TEXT NOT NULL,
                     food_name TEXT NOT NULL,
