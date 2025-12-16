@@ -110,10 +110,10 @@ public class Database
                     {
                         FoodName = reader.GetString(0),
                         Category = reader.GetString(1),
-                        Calories = reader.GetDouble(2),
-                        Protein = reader.GetDouble(3),
-                        Carbs = reader.GetDouble(4),
-                        Fat = reader.GetDouble(5),
+                        Calories = reader.IsDBNull(2) ? 0 : reader.GetDouble(2),
+                        Protein = reader.IsDBNull(3) ? 0 : reader.GetDouble(3),
+                        Carbs = reader.IsDBNull(4) ? 0 : reader.GetDouble(4),
+                        Fat = reader.IsDBNull(5) ? 0 : reader.GetDouble(5),
                         Iron = reader.IsDBNull(6) ? 0 : reader.GetDouble(6),
                         VitaminC = reader.IsDBNull(7) ? 0 : reader.GetDouble(7)
                     };
