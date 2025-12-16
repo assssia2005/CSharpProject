@@ -27,6 +27,13 @@ public class Database
                     iron REAL,
                     vitamin_c REAL
                 );
+
+                CREATE TABLE IF NOT EXISTS daily_log (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    log_date TEXT NOT NULL,
+                    food_name TEXT NOT NULL,
+                    FOREIGN KEY (food_name) REFERENCES food(food_name)
+                );
             ";
             command.ExecuteNonQuery();
         }
@@ -136,5 +143,79 @@ public class Database
             var count = (long)command.ExecuteScalar();
             return count == 0;
         }
+    }
+
+    public static void AddFoodToLog(Food food, DateTime date)
+    {
+        using (var connection = new SqliteConnection(ConnectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "INSERT INTO daily_log (log_date, food_name) VALUES ($log_date, $food_name)";
+            command.Parameters.AddWithValue("$log_date", date.ToString("yyyy-MM-dd"));
+            command.Parameters.AddWithValue("$food_name", food.FoodName);
+            command.ExecuteNonQuery();
+        }
+    }
+
+    public static void RemoveFoodFromLog(Food food, DateTime date)
+    {
+        using (var connection = new SqliteConnection(ConnectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            // This will remove only one instance if there are duplicates
+            command.CommandText = @"
+                DELETE FROM daily_log
+                WHERE id = (
+                    SELECT id
+                    FROM daily_log
+                    WHERE log_date = $log_date AND food_name = $food_name
+                    LIMIT 1
+                )";
+            command.Parameters.AddWithValue("$log_date", date.ToString("yyyy-MM-dd"));
+            command.Parameters.AddWithValue("$food_name", food.FoodName);
+            command.ExecuteNonQuery();
+        }
+    }
+
+    public static List<Food> GetLogForDate(DateTime date)
+    {
+        var foods = new List<Food>();
+        using (var connection = new SqliteConnection(ConnectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT f.food_name, f.category, f.calories, f.protein, f.carbs, f.fat, f.iron, f.vitamin_c
+                FROM daily_log dl
+                JOIN food f ON dl.food_name = f.food_name
+                WHERE dl.log_date = $log_date
+            ";
+            command.Parameters.AddWithValue("$log_date", date.ToString("yyyy-MM-dd"));
+
+            using (var reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var food = new Food
+                    {
+                        FoodName = reader.GetString(0),
+                        Category = reader.GetString(1),
+                        Calories = reader.IsDBNull(2) ? 0 : reader.GetDouble(2),
+                        Protein = reader.IsDBNull(3) ? 0 : reader.GetDouble(3),
+                        Carbs = reader.IsDBNull(4) ? 0 : reader.GetDouble(4),
+                        Fat = reader.IsDBNull(5) ? 0 : reader.GetDouble(5),
+                        Iron = reader.IsDBNull(6) ? 0 : reader.GetDouble(6),
+                        VitaminC = reader.IsDBNull(7) ? 0 : reader.GetDouble(7)
+                    };
+                    foods.Add(food);
+                }
+            }
+        }
+        return foods;
     }
 }

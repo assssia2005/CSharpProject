@@ -7,18 +7,76 @@ namespace CSharpProject
         public Form1()
         {
             InitializeComponent();
+            // Wire up event handlers
             searchButton.Click += SearchButton_Click;
             addButton.Click += AddButton_Click;
             removeButton.Click += RemoveButton_Click;
+
+            // Set display members for list boxes
+            foodListBox.DisplayMember = "FoodName";
             dailyLogListBox.DisplayMember = "FoodName";
+
+            // Load today's log on startup
+            LoadDailyLog(DateTime.Today);
+
+            // Wire up history page event handler
+            historyDateTimePicker.ValueChanged += HistoryDateTimePicker_ValueChanged;
+            // Load history for today on startup
+            LoadHistoryLog(DateTime.Today);
+        }
+
+        private void HistoryDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            LoadHistoryLog(historyDateTimePicker.Value);
+        }
+
+        private void LoadHistoryLog(DateTime date)
+        {
+            var historyLog = Database.GetLogForDate(date);
+            historyListBox.DataSource = null;
+            historyListBox.DataSource = historyLog;
+            historyListBox.DisplayMember = "FoodName";
+            UpdateHistoryTotals();
+        }
+
+        private void UpdateHistoryTotals()
+        {
+            double totalCalories = 0;
+            double totalProtein = 0;
+            double totalCarbs = 0;
+            double totalFat = 0;
+            double totalIron = 0;
+            double totalVitaminC = 0;
+
+            if (historyListBox.DataSource is List<Food> historyLog)
+            {
+                foreach (var food in historyLog)
+                {
+                    totalCalories += food.Calories;
+                    totalProtein += food.Protein;
+                    totalCarbs += food.Carbs;
+                    totalFat += food.Fat;
+                    totalIron += food.Iron;
+                    totalVitaminC += food.VitaminC;
+                }
+            }
+
+            historyTotalCaloriesLabel.Text = $"Total Calories: {totalCalories:F2}";
+            historyTotalProteinLabel.Text = $"Total Protein: {totalProtein:F2}";
+            historyTotalCarbsLabel.Text = $"Total Carbs: {totalCarbs:F2}";
+            historyTotalFatLabel.Text = $"Total Fat: {totalFat:F2}";
+            historyTotalIronLabel.Text = $"Total Iron: {totalIron:F2}";
+            historyTotalVitaminCLabel.Text = $"Total Vitamin C: {totalVitaminC:F2}";
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
             var query = searchTextBox.Text;
-            var foods = Database.SearchFood(query);
-            foodListBox.DataSource = foods;
-            foodListBox.DisplayMember = "FoodName";
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                var foods = Database.SearchFood(query);
+                foodListBox.DataSource = foods;
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -26,8 +84,8 @@ namespace CSharpProject
             var selectedFood = (Food)foodListBox.SelectedItem;
             if (selectedFood != null)
             {
-                dailyLogListBox.Items.Add(selectedFood);
-                UpdateTotals();
+                Database.AddFoodToLog(selectedFood, DateTime.Today);
+                LoadDailyLog(DateTime.Today);
             }
         }
 
@@ -36,9 +94,18 @@ namespace CSharpProject
             var selectedFood = (Food)dailyLogListBox.SelectedItem;
             if (selectedFood != null)
             {
-                dailyLogListBox.Items.Remove(selectedFood);
-                UpdateTotals();
+                Database.RemoveFoodFromLog(selectedFood, DateTime.Today);
+                LoadDailyLog(DateTime.Today);
             }
+        }
+
+        private void LoadDailyLog(DateTime date)
+        {
+            var dailyLog = Database.GetLogForDate(date);
+            dailyLogListBox.DataSource = null; // Clear existing data source
+            dailyLogListBox.DataSource = dailyLog; // Set new data source
+            dailyLogListBox.DisplayMember = "FoodName";
+            UpdateTotals();
         }
 
         private void UpdateTotals()
@@ -50,14 +117,17 @@ namespace CSharpProject
             double totalIron = 0;
             double totalVitaminC = 0;
 
-            foreach (Food food in dailyLogListBox.Items)
+            if (dailyLogListBox.DataSource is List<Food> dailyLog)
             {
-                totalCalories += food.Calories;
-                totalProtein += food.Protein;
-                totalCarbs += food.Carbs;
-                totalFat += food.Fat;
-                totalIron += food.Iron;
-                totalVitaminC += food.VitaminC;
+                foreach (var food in dailyLog)
+                {
+                    totalCalories += food.Calories;
+                    totalProtein += food.Protein;
+                    totalCarbs += food.Carbs;
+                    totalFat += food.Fat;
+                    totalIron += food.Iron;
+                    totalVitaminC += food.VitaminC;
+                }
             }
 
             totalCaloriesLabel.Text = $"Total Calories: {totalCalories:F2}";

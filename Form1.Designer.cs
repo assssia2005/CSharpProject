@@ -19,7 +19,6 @@ namespace CSharpProject
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.foodListBox = new System.Windows.Forms.ListBox();
@@ -32,8 +31,18 @@ namespace CSharpProject
             this.totalFatLabel = new System.Windows.Forms.Label();
             this.totalIronLabel = new System.Windows.Forms.Label();
             this.totalVitaminCLabel = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.historyDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.historyListBox = new System.Windows.Forms.ListBox();
+            this.historyTotalCaloriesLabel = new System.Windows.Forms.Label();
+            this.historyTotalProteinLabel = new System.Windows.Forms.Label();
+            this.historyTotalCarbsLabel = new System.Windows.Forms.Label();
+            this.historyTotalFatLabel = new System.Windows.Forms.Label();
+            this.historyTotalIronLabel = new System.Windows.Forms.Label();
+            this.historyTotalVitaminCLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             //
             // tabControl1
@@ -68,16 +77,6 @@ namespace CSharpProject
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nutrition Diary";
             this.tabPage1.UseVisualStyleBackColor = true;
-            //
-            // tabPage2
-            //
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(610, 422);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Page 2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             //
             // searchTextBox
             //
@@ -185,6 +184,94 @@ namespace CSharpProject
             this.totalVitaminCLabel.TabIndex = 11;
             this.totalVitaminCLabel.Text = "Total Vitamin C: 0";
             //
+            // tabPage2
+            //
+            this.tabPage2.Controls.Add(this.historyDateTimePicker);
+            this.tabPage2.Controls.Add(this.historyListBox);
+            this.tabPage2.Controls.Add(this.historyTotalCaloriesLabel);
+            this.tabPage2.Controls.Add(this.historyTotalProteinLabel);
+            this.tabPage2.Controls.Add(this.historyTotalCarbsLabel);
+            this.tabPage2.Controls.Add(this.historyTotalFatLabel);
+            this.tabPage2.Controls.Add(this.historyTotalIronLabel);
+            this.tabPage2.Controls.Add(this.historyTotalVitaminCLabel);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(610, 422);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "History";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            //
+            // historyDateTimePicker
+            //
+            this.historyDateTimePicker.Location = new System.Drawing.Point(8, 6);
+            this.historyDateTimePicker.Name = "historyDateTimePicker";
+            this.historyDateTimePicker.Size = new System.Drawing.Size(200, 23);
+            this.historyDateTimePicker.TabIndex = 0;
+            //
+            // historyListBox
+            //
+            this.historyListBox.FormattingEnabled = true;
+            this.historyListBox.ItemHeight = 15;
+            this.historyListBox.Location = new System.Drawing.Point(8, 35);
+            this.historyListBox.Name = "historyListBox";
+            this.historyListBox.Size = new System.Drawing.Size(587, 199);
+            this.historyListBox.TabIndex = 1;
+            //
+            // historyTotalCaloriesLabel
+            //
+            this.historyTotalCaloriesLabel.AutoSize = true;
+            this.historyTotalCaloriesLabel.Location = new System.Drawing.Point(8, 248);
+            this.historyTotalCaloriesLabel.Name = "historyTotalCaloriesLabel";
+            this.historyTotalCaloriesLabel.Size = new System.Drawing.Size(82, 15);
+            this.historyTotalCaloriesLabel.TabIndex = 2;
+            this.historyTotalCaloriesLabel.Text = "Total Calories: 0";
+            //
+            // historyTotalProteinLabel
+            //
+            this.historyTotalProteinLabel.AutoSize = true;
+            this.historyTotalProteinLabel.Location = new System.Drawing.Point(8, 272);
+            this.historyTotalProteinLabel.Name = "historyTotalProteinLabel";
+            this.historyTotalProteinLabel.Size = new System.Drawing.Size(79, 15);
+            this.historyTotalProteinLabel.TabIndex = 3;
+            this.historyTotalProteinLabel.Text = "Total Protein: 0";
+            //
+            // historyTotalCarbsLabel
+            //
+            this.historyTotalCarbsLabel.AutoSize = true;
+            this.historyTotalCarbsLabel.Location = new System.Drawing.Point(8, 296);
+            this.historyTotalCarbsLabel.Name = "historyTotalCarbsLabel";
+            this.historyTotalCarbsLabel.Size = new System.Drawing.Size(70, 15);
+            this.historyTotalCarbsLabel.TabIndex = 4;
+            this.historyTotalCarbsLabel.Text = "Total Carbs: 0";
+            //
+            // historyTotalFatLabel
+            //
+            this.historyTotalFatLabel.AutoSize = true;
+            this.historyTotalFatLabel.Location = new System.Drawing.Point(8, 320);
+            this.historyTotalFatLabel.Name = "historyTotalFatLabel";
+            this.historyTotalFatLabel.Size = new System.Drawing.Size(55, 15);
+            this.historyTotalFatLabel.TabIndex = 5;
+            this.historyTotalFatLabel.Text = "Total Fat: 0";
+            //
+            // historyTotalIronLabel
+            //
+            this.historyTotalIronLabel.AutoSize = true;
+            this.historyTotalIronLabel.Location = new System.Drawing.Point(8, 344);
+            this.historyTotalIronLabel.Name = "historyTotalIronLabel";
+            this.historyTotalIronLabel.Size = new System.Drawing.Size(59, 15);
+            this.historyTotalIronLabel.TabIndex = 6;
+            this.historyTotalIronLabel.Text = "Total Iron: 0";
+            //
+            // historyTotalVitaminCLabel
+            //
+            this.historyTotalVitaminCLabel.AutoSize = true;
+            this.historyTotalVitaminCLabel.Location = new System.Drawing.Point(8, 368);
+            this.historyTotalVitaminCLabel.Name = "historyTotalVitaminCLabel";
+            this.historyTotalVitaminCLabel.Size = new System.Drawing.Size(91, 15);
+            this.historyTotalVitaminCLabel.TabIndex = 7;
+            this.historyTotalVitaminCLabel.Text = "Total Vitamin C: 0";
+            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -196,6 +283,8 @@ namespace CSharpProject
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
         }
 
@@ -203,7 +292,6 @@ namespace CSharpProject
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.ListBox foodListBox;
@@ -216,5 +304,14 @@ namespace CSharpProject
         private System.Windows.Forms.Label totalFatLabel;
         private System.Windows.Forms.Label totalIronLabel;
         private System.Windows.Forms.Label totalVitaminCLabel;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DateTimePicker historyDateTimePicker;
+        private System.Windows.Forms.ListBox historyListBox;
+        private System.Windows.Forms.Label historyTotalCaloriesLabel;
+        private System.Windows.Forms.Label historyTotalProteinLabel;
+        private System.Windows.Forms.Label historyTotalCarbsLabel;
+        private System.Windows.Forms.Label historyTotalFatLabel;
+        private System.Windows.Forms.Label historyTotalIronLabel;
+        private System.Windows.Forms.Label historyTotalVitaminCLabel;
     }
 }
