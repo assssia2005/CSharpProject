@@ -24,6 +24,86 @@ namespace CSharpProject
             historyDateTimePicker.ValueChanged += HistoryDateTimePicker_ValueChanged;
             editButton.Click += EditButton_Click;
             LoadHistoryLog(DateTime.Today);
+
+            // Initialize the Calorie Calculator tab
+            InitializeCalculator();
+        }
+
+        private void InitializeCalculator()
+        {
+            // Populate ComboBoxes
+            formulaComboBox.Items.AddRange(new string[] { "Mifflin-St Jeor", "Revised Harris-Benedict", "Katch-McArdle" });
+            genderComboBox.DataSource = Enum.GetValues(typeof(Gender));
+            activityLevelComboBox.DataSource = Enum.GetValues(typeof(ActivityLevel));
+
+            // Set default selections
+            formulaComboBox.SelectedIndex = 0;
+            genderComboBox.SelectedIndex = 0;
+            activityLevelComboBox.SelectedIndex = 0;
+
+            // Wire up event handlers
+            formulaComboBox.SelectedIndexChanged += FormulaComboBox_SelectedIndexChanged;
+            calculateButton.Click += CalculateButton_Click;
+        }
+
+        private void FormulaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Show body fat panel only for Katch-McArdle formula
+            bodyFatPanel.Visible = (formulaComboBox.SelectedItem.ToString() == "Katch-McArdle");
+        }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Gather inputs
+                Gender gender = (Gender)genderComboBox.SelectedItem;
+                double weight = (double)weightNumericUpDown.Value;
+                double height = (double)heightNumericUpDown.Value;
+                int age = (int)ageNumericUpDown.Value;
+                ActivityLevel activity = (ActivityLevel)activityLevelComboBox.SelectedItem;
+                string formula = formulaComboBox.SelectedItem.ToString();
+
+                // Basic validation
+                if (weight <= 0 || height <= 0 || age <= 0)
+                {
+                    MessageBox.Show("Please enter valid age, weight, and height.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                double bmr = 0;
+
+                // Calculate BMR based on the selected formula
+                switch (formula)
+                {
+                    case "Mifflin-St Jeor":
+                        bmr = CalorieCalculator.CalculateMifflinStJeorBMR(gender, weight, height, age);
+                        break;
+                    case "Revised Harris-Benedict":
+                        bmr = CalorieCalculator.CalculateRevisedHarrisBenedictBMR(gender, weight, height, age);
+                        break;
+                    case "Katch-McArdle":
+                        double bodyFat = (double)bodyFatNumericUpDown.Value;
+                        if (bodyFat <= 0)
+                        {
+                            MessageBox.Show("Please enter a valid body fat percentage for the Katch-McArdle formula.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        bmr = CalorieCalculator.CalculateKatchMcArdleBMR(weight, bodyFat);
+                        break;
+                }
+
+                // Calculate TDEE
+                double tdee = CalorieCalculator.CalculateTDEE(bmr, activity);
+
+                // Display results
+                bmrResultLabel.Text = $"BMR: {bmr:F2} calories/day";
+                tdeeResultLabel.Text = $"TDEE: {tdee:F2} calories/day";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during calculation: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
