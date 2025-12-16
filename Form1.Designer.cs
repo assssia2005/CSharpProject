@@ -19,6 +19,10 @@ namespace CSharpProject
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+
+            // Controls for TabPage1 (Nutrition Diary)
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.foodListBox = new System.Windows.Forms.ListBox();
@@ -31,7 +35,8 @@ namespace CSharpProject
             this.totalFatLabel = new System.Windows.Forms.Label();
             this.totalIronLabel = new System.Windows.Forms.Label();
             this.totalVitaminCLabel = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+
+            // Controls for TabPage2 (History)
             this.historyDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.historyListBox = new System.Windows.Forms.ListBox();
             this.editButton = new System.Windows.Forms.Button();
@@ -41,7 +46,8 @@ namespace CSharpProject
             this.historyTotalFatLabel = new System.Windows.Forms.Label();
             this.historyTotalIronLabel = new System.Windows.Forms.Label();
             this.historyTotalVitaminCLabel = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+
+            // Controls for TabPage3 (Calorie Calculator)
             this.formulaComboBox = new System.Windows.Forms.ComboBox();
             this.genderComboBox = new System.Windows.Forms.ComboBox();
             this.ageNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -50,6 +56,7 @@ namespace CSharpProject
             this.activityLevelComboBox = new System.Windows.Forms.ComboBox();
             this.bodyFatPanel = new System.Windows.Forms.Panel();
             this.bodyFatNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.bodyFatLabel = new System.Windows.Forms.Label();
             this.calculateButton = new System.Windows.Forms.Button();
             this.bmrResultLabel = new System.Windows.Forms.Label();
             this.tdeeResultLabel = new System.Windows.Forms.Label();
@@ -59,7 +66,7 @@ namespace CSharpProject
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.bodyFatLabel = new System.Windows.Forms.Label();
+
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -70,6 +77,7 @@ namespace CSharpProject
             this.bodyFatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bodyFatNumericUpDown)).BeginInit();
             this.SuspendLayout();
+
             //
             // tabControl1
             //
@@ -77,11 +85,8 @@ namespace CSharpProject
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(634, 461);
-            this.tabControl1.TabIndex = 0;
             //
             // tabPage1
             //
@@ -97,16 +102,24 @@ namespace CSharpProject
             this.tabPage1.Controls.Add(this.totalFatLabel);
             this.tabPage1.Controls.Add(this.totalIronLabel);
             this.tabPage1.Controls.Add(this.totalVitaminCLabel);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(626, 433);
-            this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nutrition Diary";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // ... (rest of tabPage1 properties)
             //
-            // searchTextBox, etc. for tabPage1
-            // ... (All controls from the first tab)
+            // All other controls for tabPage1...
+            //
+            this.searchTextBox.Location = new System.Drawing.Point(8, 6); this.searchTextBox.Name = "searchTextBox";
+            this.searchButton.Location = new System.Drawing.Point(214, 6); this.searchButton.Name = "searchButton"; this.searchButton.Text = "Search";
+            this.foodListBox.Location = new System.Drawing.Point(8, 35); this.foodListBox.Name = "foodListBox";
+            this.addButton.Location = new System.Drawing.Point(8, 240); this.addButton.Name = "addButton"; this.addButton.Text = "Add to Daily Log";
+            this.dailyLogListBox.Location = new System.Drawing.Point(314, 35); this.dailyLogListBox.Name = "dailyLogListBox";
+            this.removeButton.Location = new System.Drawing.Point(314, 240); this.removeButton.Name = "removeButton"; this.removeButton.Text = "Remove from Daily Log";
+            this.totalCaloriesLabel.Location = new System.Drawing.Point(314, 277); this.totalCaloriesLabel.Name = "totalCaloriesLabel"; this.totalCaloriesLabel.Text = "Total Calories: 0"; this.totalCaloriesLabel.AutoSize = true;
+            this.totalProteinLabel.Location = new System.Drawing.Point(314, 301); this.totalProteinLabel.Name = "totalProteinLabel"; this.totalProteinLabel.Text = "Total Protein: 0"; this.totalProteinLabel.AutoSize = true;
+            this.totalCarbsLabel.Location = new System.Drawing.Point(314, 325); this.totalCarbsLabel.Name = "totalCarbsLabel"; this.totalCarbsLabel.Text = "Total Carbs: 0"; this.totalCarbsLabel.AutoSize = true;
+            this.totalFatLabel.Location = new System.Drawing.Point(314, 349); this.totalFatLabel.Name = "totalFatLabel"; this.totalFatLabel.Text = "Total Fat: 0"; this.totalFatLabel.AutoSize = true;
+            this.totalIronLabel.Location = new System.Drawing.Point(314, 373); this.totalIronLabel.Name = "totalIronLabel"; this.totalIronLabel.Text = "Total Iron: 0"; this.totalIronLabel.AutoSize = true;
+            this.totalVitaminCLabel.Location = new System.Drawing.Point(314, 397); this.totalVitaminCLabel.Name = "totalVitaminCLabel"; this.totalVitaminCLabel.Text = "Total Vitamin C: 0"; this.totalVitaminCLabel.AutoSize = true;
             //
             // tabPage2
             //
@@ -119,16 +132,20 @@ namespace CSharpProject
             this.tabPage2.Controls.Add(this.historyTotalFatLabel);
             this.tabPage2.Controls.Add(this.historyTotalIronLabel);
             this.tabPage2.Controls.Add(this.historyTotalVitaminCLabel);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(626, 433);
-            this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "History";
-            this.tabPage2.UseVisualStyleBackColor = true;
             //
-            // historyDateTimePicker, etc. for tabPage2
-            // ... (All controls for the history tab)
+            // All other controls for tabPage2...
+            //
+            this.historyDateTimePicker.Location = new System.Drawing.Point(8, 6); this.historyDateTimePicker.Name = "historyDateTimePicker";
+            this.historyListBox.Location = new System.Drawing.Point(8, 35); this.historyListBox.Name = "historyListBox";
+            this.editButton.Location = new System.Drawing.Point(490, 240); this.editButton.Name = "editButton"; this.editButton.Text = "Edit Selected";
+            this.historyTotalCaloriesLabel.Location = new System.Drawing.Point(8, 248); this.historyTotalCaloriesLabel.Name = "historyTotalCaloriesLabel"; this.historyTotalCaloriesLabel.Text = "Total Calories: 0"; this.historyTotalCaloriesLabel.AutoSize = true;
+            this.historyTotalProteinLabel.Location = new System.Drawing.Point(8, 272); this.historyTotalProteinLabel.Name = "historyTotalProteinLabel"; this.historyTotalProteinLabel.Text = "Total Protein: 0"; this.historyTotalProteinLabel.AutoSize = true;
+            this.historyTotalCarbsLabel.Location = new System.Drawing.Point(8, 296); this.historyTotalCarbsLabel.Name = "historyTotalCarbsLabel"; this.historyTotalCarbsLabel.Text = "Total Carbs: 0"; this.historyTotalCarbsLabel.AutoSize = true;
+            this.historyTotalFatLabel.Location = new System.Drawing.Point(8, 320); this.historyTotalFatLabel.Name = "historyTotalFatLabel"; this.historyTotalFatLabel.Text = "Total Fat: 0"; this.historyTotalFatLabel.AutoSize = true;
+            this.historyTotalIronLabel.Location = new System.Drawing.Point(8, 344); this.historyTotalIronLabel.Name = "historyTotalIronLabel"; this.historyTotalIronLabel.Text = "Total Iron: 0"; this.historyTotalIronLabel.AutoSize = true;
+            this.historyTotalVitaminCLabel.Location = new System.Drawing.Point(8, 368); this.historyTotalVitaminCLabel.Name = "historyTotalVitaminCLabel"; this.historyTotalVitaminCLabel.Text = "Total Vitamin C: 0"; this.historyTotalVitaminCLabel.AutoSize = true;
             //
             // tabPage3
             //
@@ -148,16 +165,31 @@ namespace CSharpProject
             this.tabPage3.Controls.Add(this.ageNumericUpDown);
             this.tabPage3.Controls.Add(this.genderComboBox);
             this.tabPage3.Controls.Add(this.formulaComboBox);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(626, 433);
-            this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Calorie Calculator";
-            this.tabPage3.UseVisualStyleBackColor = true;
             //
-            // All other control initializations...
-            // ...
+            // All other controls for tabPage3...
+            //
+            this.formulaComboBox.Location = new System.Drawing.Point(150, 20); this.formulaComboBox.Name = "formulaComboBox";
+            this.genderComboBox.Location = new System.Drawing.Point(150, 60); this.genderComboBox.Name = "genderComboBox";
+            this.ageNumericUpDown.Location = new System.Drawing.Point(150, 100); this.ageNumericUpDown.Name = "ageNumericUpDown";
+            this.weightNumericUpDown.Location = new System.Drawing.Point(150, 140); this.weightNumericUpDown.Name = "weightNumericUpDown";
+            this.heightNumericUpDown.Location = new System.Drawing.Point(150, 180); this.heightNumericUpDown.Name = "heightNumericUpDown";
+            this.activityLevelComboBox.Location = new System.Drawing.Point(150, 260); this.activityLevelComboBox.Name = "activityLevelComboBox";
+            this.bodyFatPanel.Location = new System.Drawing.Point(20, 210); this.bodyFatPanel.Name = "bodyFatPanel";
+            this.bodyFatPanel.Controls.Add(this.bodyFatLabel); this.bodyFatPanel.Controls.Add(this.bodyFatNumericUpDown);
+            this.bodyFatNumericUpDown.Location = new System.Drawing.Point(130, 10); this.bodyFatNumericUpDown.Name = "bodyFatNumericUpDown";
+            this.calculateButton.Location = new System.Drawing.Point(150, 300); this.calculateButton.Name = "calculateButton"; this.calculateButton.Text = "Calculate";
+            this.bmrResultLabel.Location = new System.Drawing.Point(40, 350); this.bmrResultLabel.Name = "bmrResultLabel"; this.bmrResultLabel.Text = "BMR: "; this.bmrResultLabel.AutoSize = true;
+            this.tdeeResultLabel.Location = new System.Drawing.Point(40, 380); this.tdeeResultLabel.Name = "tdeeResultLabel"; this.tdeeResultLabel.Text = "TDEE: "; this.tdeeResultLabel.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 23); this.label1.Name = "label1"; this.label1.Text = "Formula:"; this.label1.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 63); this.label2.Name = "label2"; this.label2.Text = "Gender:"; this.label2.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(40, 102); this.label3.Name = "label3"; this.label3.Text = "Age:"; this.label3.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(40, 142); this.label4.Name = "label4"; this.label4.Text = "Weight (kg):"; this.label4.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(40, 182); this.label5.Name = "label5"; this.label5.Text = "Height (cm):"; this.label5.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 263); this.label6.Name = "label6"; this.label6.Text = "Activity Level:"; this.label6.AutoSize = true;
+            this.bodyFatLabel.Location = new System.Drawing.Point(20, 12); this.bodyFatLabel.Name = "bodyFatLabel"; this.bodyFatLabel.Text = "Body Fat (%):"; this.bodyFatLabel.AutoSize = true;
+            //
             // Form1
             //
             this.ClientSize = new System.Drawing.Size(634, 461);
@@ -182,9 +214,10 @@ namespace CSharpProject
 
         #endregion
 
-        // All controls are now properly declared
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.ListBox foodListBox;
@@ -197,7 +230,6 @@ namespace CSharpProject
         private System.Windows.Forms.Label totalFatLabel;
         private System.Windows.Forms.Label totalIronLabel;
         private System.Windows.Forms.Label totalVitaminCLabel;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DateTimePicker historyDateTimePicker;
         private System.Windows.Forms.ListBox historyListBox;
         private System.Windows.Forms.Button editButton;
@@ -207,7 +239,6 @@ namespace CSharpProject
         private System.Windows.Forms.Label historyTotalFatLabel;
         private System.Windows.Forms.Label historyTotalIronLabel;
         private System.Windows.Forms.Label historyTotalVitaminCLabel;
-        private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ComboBox formulaComboBox;
         private System.Windows.Forms.ComboBox genderComboBox;
         private System.Windows.Forms.NumericUpDown ageNumericUpDown;
