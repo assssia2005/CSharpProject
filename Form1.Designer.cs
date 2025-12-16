@@ -179,9 +179,9 @@ namespace CSharpProject
             this.bodyFatPanel.Location = new System.Drawing.Point(20, 210); this.bodyFatPanel.Name = "bodyFatPanel";
             this.bodyFatPanel.Controls.Add(this.bodyFatLabel); this.bodyFatPanel.Controls.Add(this.bodyFatNumericUpDown);
             this.bodyFatNumericUpDown.Location = new System.Drawing.Point(130, 10); this.bodyFatNumericUpDown.Name = "bodyFatNumericUpDown";
-            this.calculateButton.Location = new System.Drawing.Point(150, 300); this.calculateButton.Name = "calculateButton"; this.calculateButton.Text = "Calculate";
-            this.bmrResultLabel.Location = new System.Drawing.Point(40, 350); this.bmrResultLabel.Name = "bmrResultLabel"; this.bmrResultLabel.Text = "BMR: "; this.bmrResultLabel.AutoSize = true;
-            this.tdeeResultLabel.Location = new System.Drawing.Point(40, 380); this.tdeeResultLabel.Name = "tdeeResultLabel"; this.tdeeResultLabel.Text = "TDEE: "; this.tdeeResultLabel.AutoSize = true;
+            this.calculateButton.Location = new System.Drawing.Point(150, 310); this.calculateButton.Name = "calculateButton"; this.calculateButton.Text = "Calculate";
+            this.bmrResultLabel.Location = new System.Drawing.Point(40, 360); this.bmrResultLabel.Name = "bmrResultLabel"; this.bmrResultLabel.Text = "BMR: "; this.bmrResultLabel.AutoSize = true;
+            this.tdeeResultLabel.Location = new System.Drawing.Point(40, 390); this.tdeeResultLabel.Name = "tdeeResultLabel"; this.tdeeResultLabel.Text = "TDEE: "; this.tdeeResultLabel.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(40, 23); this.label1.Name = "label1"; this.label1.Text = "Formula:"; this.label1.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(40, 63); this.label2.Name = "label2"; this.label2.Text = "Gender:"; this.label2.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(40, 102); this.label3.Name = "label3"; this.label3.Text = "Age:"; this.label3.AutoSize = true;
