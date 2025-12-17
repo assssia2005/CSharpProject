@@ -17,6 +17,7 @@ namespace CSharpProject
 
         private void InitializeComponent()
         {
+            this.addFoodButton = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
