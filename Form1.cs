@@ -46,23 +46,23 @@ namespace CSharpProject
             calculateButton.Click += CalculateButton_Click;
         }
 
-        private void FormulaComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FormulaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
         {
             // Show body fat panel only for Katch-McArdle formula
-            bodyFatPanel.Visible = (formulaComboBox.SelectedItem.ToString() == "Katch-McArdle");
+            bodyFatPanel.Visible = (formulaComboBox.SelectedItem?.ToString() == "Katch-McArdle");
         }
 
-        private void CalculateButton_Click(object sender, EventArgs e)
+        private void CalculateButton_Click(object? sender, EventArgs e)
         {
             try
             {
                 // Gather inputs
-                Gender gender = (Gender)genderComboBox.SelectedItem;
+                if (genderComboBox.SelectedItem is not Gender gender) return;
                 double weight = (double)weightNumericUpDown.Value;
                 double height = (double)heightNumericUpDown.Value;
                 int age = (int)ageNumericUpDown.Value;
-                ActivityLevel activity = (ActivityLevel)activityLevelComboBox.SelectedItem;
-                string formula = formulaComboBox.SelectedItem.ToString();
+                if (activityLevelComboBox.SelectedItem is not ActivityLevel activity) return;
+                string? formula = formulaComboBox.SelectedItem?.ToString();
 
                 // Basic validation
                 if (weight <= 0 || height <= 0 || age <= 0)
@@ -106,10 +106,9 @@ namespace CSharpProject
             }
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object? sender, EventArgs e)
         {
-            var selectedLoggedFood = (LoggedFood)historyListBox.SelectedItem;
-            if (selectedLoggedFood == null) return;
+            if (historyListBox.SelectedItem is not LoggedFood selectedLoggedFood) return;
 
             // Create a prompt form similar to the add functionality
             Form prompt = new Form()
@@ -144,7 +143,7 @@ namespace CSharpProject
             }
         }
 
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object? sender, EventArgs e)
         {
             var query = searchTextBox.Text;
             if (!string.IsNullOrWhiteSpace(query))
@@ -154,10 +153,9 @@ namespace CSharpProject
             }
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object? sender, EventArgs e)
         {
-            var selectedFood = (Food)foodListBox.SelectedItem;
-            if (selectedFood == null) return;
+            if (foodListBox.SelectedItem is not Food selectedFood) return;
 
             // Create a small form on the fly to ask for the weight
             Form prompt = new Form()
@@ -192,14 +190,12 @@ namespace CSharpProject
             }
         }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
+        private void RemoveButton_Click(object? sender, EventArgs e)
         {
-            var selectedLoggedFood = (LoggedFood)dailyLogListBox.SelectedItem;
-            if (selectedLoggedFood != null)
-            {
-                Database.RemoveFoodFromLog(selectedLoggedFood.Id);
-                LoadDailyLog(DateTime.Today);
-            }
+            if (dailyLogListBox.SelectedItem is not LoggedFood selectedLoggedFood) return;
+
+            Database.RemoveFoodFromLog(selectedLoggedFood.Id);
+            LoadDailyLog(DateTime.Today);
         }
 
         private void LoadDailyLog(DateTime date)
@@ -243,7 +239,7 @@ namespace CSharpProject
             totalVitaminCLabel.Text = $"Total Vitamin C: {totalVitaminC:F2}";
         }
 
-        private void HistoryDateTimePicker_ValueChanged(object sender, EventArgs e)
+        private void HistoryDateTimePicker_ValueChanged(object? sender, EventArgs e)
         {
             LoadHistoryLog(historyDateTimePicker.Value);
         }
