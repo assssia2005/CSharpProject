@@ -47,6 +47,8 @@ namespace CSharpProject
 
             // Set the button icon from embedded resources
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            string[] resources = assembly.GetManifestResourceNames();
+            System.IO.File.WriteAllLines("resource_names.txt", resources);
             using (var stream = assembly.GetManifestResourceStream("CSharpProject.calculator.png"))
             {
                 if (stream != null)
