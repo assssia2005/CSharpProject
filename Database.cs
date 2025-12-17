@@ -40,6 +40,38 @@ public class Database
         }
     }
 
+    public static void AddFood(Food food)
+    {
+        using (var connection = new SqliteConnection(ConnectionString))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText =
+            @"
+                INSERT INTO food (food_name, category, calories, protein, carbs, fat, iron, vitamin_c)
+                VALUES ($food_name, $category, $calories, $protein, $carbs, $fat, $iron, $vitamin_c)
+            ";
+            command.Parameters.AddWithValue("$food_name", food.FoodName);
+            command.Parameters.AddWithValue("$category", food.Category);
+            command.Parameters.AddWithValue("$calories", food.Calories);
+            command.Parameters.AddWithValue("$protein", food.Protein);
+            command.Parameters.AddWithValue("$carbs", food.Carbs);
+            command.Parameters.AddWithValue("$fat", food.Fat);
+            command.Parameters.AddWithValue("$iron", food.Iron);
+            command.Parameters.AddWithValue("$vitamin_c", food.VitaminC);
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (SqliteException ex) when (ex.SqliteErrorCode == 19) // Constraint violation
+            {
+                throw new InvalidOperationException("A food with this name already exists.", ex);
+            }
+        }
+    }
+
     public static void ImportDataFromCsv(string csvFilePath)
     {
         using (var connection = new SqliteConnection(ConnectionString))

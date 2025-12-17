@@ -92,6 +92,7 @@ namespace CSharpProject
             // tabPage1
             //
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.addFoodButton);
             this.tabPage1.Controls.Add(this.searchTextBox);
             this.tabPage1.Controls.Add(this.searchButton);
             this.tabPage1.Controls.Add(this.foodListBox);
@@ -365,8 +366,17 @@ namespace CSharpProject
             this.calculateButton.Name = "calculateButton";
             this.calculateButton.Size = new System.Drawing.Size(200, 40);
             this.calculateButton.Text = "Calculate";
-            this.calculateButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.calculateButton.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            //
+            // addFoodButton
+            //
+            this.addFoodButton.BackColor = System.Drawing.Color.FromArgb(23, 162, 184);
+            this.addFoodButton.FlatAppearance.BorderSize = 0;
+            this.addFoodButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addFoodButton.ForeColor = System.Drawing.Color.White;
+            this.addFoodButton.Location = new System.Drawing.Point(13, 288);
+            this.addFoodButton.Name = "addFoodButton";
+            this.addFoodButton.Size = new System.Drawing.Size(286, 40);
+            this.addFoodButton.Text = "Add New Food to Database";
             //
             // bmrResultLabel
             //
@@ -459,6 +469,7 @@ namespace CSharpProject
 
         #endregion
 
+        private System.Windows.Forms.Button addFoodButton;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

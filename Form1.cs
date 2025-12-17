@@ -6,16 +6,12 @@ namespace CSharpProject
     {
         public Form1()
         {
-            // Set the button icon from embedded resources
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            string[] resources = assembly.GetManifestResourceNames();
-            System.IO.File.WriteAllLines("resource_names.txt", resources);
-
             InitializeComponent();
             // Wire up event handlers
             searchButton.Click += SearchButton_Click;
             addButton.Click += AddButton_Click;
             removeButton.Click += RemoveButton_Click;
+            addFoodButton.Click += addFoodButton_Click;
 
             // Set display members for list boxes to use the new DisplayName property
             foodListBox.DisplayMember = "FoodName";
@@ -49,18 +45,6 @@ namespace CSharpProject
             // Wire up event handlers
             formulaComboBox.SelectedIndexChanged += FormulaComboBox_SelectedIndexChanged;
             calculateButton.Click += CalculateButton_Click;
-
-            // Set the button icon from embedded resources
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            string[] resources = assembly.GetManifestResourceNames();
-            System.IO.File.WriteAllLines("resource_names.txt", resources);
-            using (var stream = assembly.GetManifestResourceStream("CSharpProject.calculator.png"))
-            {
-                if (stream != null)
-                {
-                    calculateButton.Image = Image.FromStream(stream);
-                }
-            }
         }
 
         private void FormulaComboBox_SelectedIndexChanged(object? sender, EventArgs e)
@@ -300,6 +284,18 @@ namespace CSharpProject
             historyTotalFatLabel.Text = $"Total Fat: {totalFat:F2}";
             historyTotalIronLabel.Text = $"Total Iron: {totalIron:F2}";
             historyTotalVitaminCLabel.Text = $"Total Vitamin C: {totalVitaminC:F2}";
+        }
+
+        private void addFoodButton_Click(object? sender, EventArgs e)
+        {
+            using (var addFoodForm = new AddFoodForm())
+            {
+                if (addFoodForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the search to include the new food
+                    SearchButton_Click(null, EventArgs.Empty);
+                }
+            }
         }
     }
 }
