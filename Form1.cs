@@ -44,6 +44,16 @@ namespace CSharpProject
             // Wire up event handlers
             formulaComboBox.SelectedIndexChanged += FormulaComboBox_SelectedIndexChanged;
             calculateButton.Click += CalculateButton_Click;
+
+            // Set the button icon from embedded resources
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            using (var stream = assembly.GetManifestResourceStream("CSharpProject.calculator.png"))
+            {
+                if (stream != null)
+                {
+                    calculateButton.Image = Image.FromStream(stream);
+                }
+            }
         }
 
         private void FormulaComboBox_SelectedIndexChanged(object sender, EventArgs e)
